@@ -4,7 +4,7 @@ import { getMinMaxInt, randomCode, getRandomInt } from "../mod.ts";
 console.log(getMinMaxInt(4));
 
 // 获取1000-9999中的随机值
-console.log('$---', getRandomInt(1000, 9999));
+console.log(getRandomInt(1000, 9999));
 
 // 获取4位随机值
 console.log(randomCode(4));
