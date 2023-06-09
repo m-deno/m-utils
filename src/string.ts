@@ -15,7 +15,7 @@ import { isEmpty } from "./object.ts";
  * @param {string} urlParamsString 参数字符串
  * @returns {object|null} 包装后的对象
  */
-function getObjectByOperators(str: string, ...operators: string[]): object|null {
+export function getObjectByOperators(str: string, ...operators: string[]): object|null {
   // 存放解析后数据的结果
   const ret = Object.create(null);
   if (!str) {
@@ -71,7 +71,7 @@ function getObjectByOperators(str: string, ...operators: string[]): object|null 
  * @param {string} operatorTor 参数分割符
  * @param {string} assignTor 赋值分隔符
  */
-function splitByOperators(str: string, operatorTor: string='&', assignTor: string='=') {
+export function splitByOperators(str: string, operatorTor: string='&', assignTor: string='=') {
   const ret = Object.create(null);
   for (const urlParam of str.split(operatorTor)) {
     if (urlParam === "") {
@@ -83,25 +83,4 @@ function splitByOperators(str: string, operatorTor: string='&', assignTor: strin
     }
   }
   return Object.keys(ret).length === 0 ? null : ret
-}
-
-export default {
-  getObjectByOperators,
-  /**
-   * 根据指定拆分字符将数据转为对象
-   * 
-   * @example
-   * ```ts
-   * splitByOperators('a=1&b=12') 
-   * // { a: "1", b: "12" }
-   * 
-   * splitByOperators('a#1&b#12', '&', '#') 
-   * // { a: "1", b: "12" }
-   * ```
-   * 
-   * @param {string} str 目标字符串
-   * @param {string} operatorTor 参数分割符
-   * @param {string} assignTor 赋值分隔符
-   */
-  splitByOperators
 }
