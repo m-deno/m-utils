@@ -15,7 +15,7 @@ import { isEmpty } from "./object.ts";
  * @param {string} urlParamsString 参数字符串
  * @returns {object|null} 包装后的对象
  */
-export function getObjectByOperators(str: string, ...operators: string[]): object|null {
+export function getObjectByOperators(str: string, ...operators: string[]): Record<string, unknown>|null {
   // 存放解析后数据的结果
   const ret = Object.create(null);
   if (!str) {
@@ -40,7 +40,7 @@ export function getObjectByOperators(str: string, ...operators: string[]): objec
         continue;
       }
       const tmpSplits = urlParam.split(operator)
-      const [key, value] = tmpSplits
+      const [_, value] = tmpSplits
       // 无效键值对
       if (!isEmpty(value)) {
         tmpArr = tmpArr.concat(tmpSplits)
@@ -71,13 +71,13 @@ export function getObjectByOperators(str: string, ...operators: string[]): objec
  * @param {string} operatorTor 参数分割符
  * @param {string} assignTor 赋值分隔符
  */
-export function splitByOperators(str: string, operatorTor: string='&', assignTor: string='=') {
+export function splitByOperators(str: string, operatorTor='&', assignTor='=') {
   const ret = Object.create(null);
   for (const urlParam of str.split(operatorTor)) {
     if (urlParam === "") {
       continue;
     }
-    let [key, value] = urlParam.split(assignTor);
+    const [key, value] = urlParam.split(assignTor);
     if (value) {
       Object.assign(ret, {[key]: value})
     }

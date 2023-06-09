@@ -1,30 +1,10 @@
+import { splitByOperators } from "./string.ts";
+
 export type TUrl = Pick<URL, 'origin'|'protocol'|'host'|'pathname'|'hash'> & {
   params: {
-    string: any
+    string: unknown
   }
 } 
-
-/**
- * 根据字符串a=1&b=2包装为对象形式{a:1,b:2}
- * @param {string} urlParamsString 参数字符串
- * @returns {object} 包装后的对象
- */
-function createObjectWithParamsString(urlParamsString: string) {
-  if (!urlParamsString) {
-    return null
-  }
-  const ret = Object.create(null);
-  for (const urlParam of urlParamsString.split("&")) {
-    if (urlParam === "") {
-      continue;
-    }
-    let [key, value] = urlParam.split('=');
-    if (value) {
-      Object.assign(ret, {[key]: value})
-    }
-  }
-  return Object.keys(ret).length === 0 ? null : ret
-}
 
 /**
  * 判断一个字符串是否为url
@@ -95,19 +75,19 @@ export function parseUrl(url: string): TUrl {
   // 判断url是否合法
   if (isValidUrl(url)) {
     const _URL = new URL(url)
-    let _obj: TUrl = Object.create(null);
+    const _obj: TUrl = Object.create(null);
     if (_URL.search) {
       // url?a=1&b=1 search
       // 拆分重组url参数 -> a=1&b=1 -> {a:1, b: 1}
       const urlParamsString = _URL.search.replace('?', '')
-      const _objParams = createObjectWithParamsString(urlParamsString)
+      const _objParams = splitByOperators(urlParamsString)
       _obj['params'] = _objParams
     }
 
     if (_URL.hash) {
       // url/#/a?/a=1&b=1 hash部分参数
       const [hashParamsString, urlParamsString] = _URL.hash.split('?')
-      const _objParams = createObjectWithParamsString(urlParamsString)
+      const _objParams = splitByOperators(urlParamsString)
       // 合并params
       _obj['params'] = Object.assign({}, _obj.params, _objParams)
       _obj['hash'] = hashParamsString
@@ -126,7 +106,7 @@ export function parseUrl(url: string): TUrl {
   }
   // 非正常url
   // a=1&b=1
-  const _objParams = createObjectWithParamsString(url)
+  const _objParams = splitByOperators(url)
   if (_objParams) {
     obj['params'] = _objParams
   }
@@ -139,8 +119,10 @@ export function parseUrl(url: string): TUrl {
  * @example 
  * ```ts
  *  getUrlParams('?a=1&b=1&c=1.0&d=111')
+ *  // { a: "1", b: "1", c: "1.0", d: "111" }
  * 
  *  getUrlParams('a=1&b=1&c=1.0&d=111')
+ *  // { a: "1", b: "1", c: "1.0", d: "111" }
  * ```
  * 
  * @param {string } url url字符串
@@ -148,9 +130,9 @@ export function parseUrl(url: string): TUrl {
  */
 export function getUrlParams (url: string) {
   const _url = `&${url}`
-  let obj = Object.create(null)
-  let reg = /[?&][^?&]+=[^?&]+/g
-  let arr = _url.match(reg)
+  const obj = Object.create(null)
+  const reg = /[?&][^?&]+=[^?&]+/g
+  const arr = _url.match(reg)
   if (!arr) {
     return obj
   }
@@ -168,7 +150,7 @@ export function getUrlParams (url: string) {
  * @example 
  * ```ts
  *  pickParams('http://www.baidu.com?&a=1&b=1&c=1.0&d=111', 'd')
- * 
+ *  // 111
  * ```
  * 
  * @param {string } url url字符串
@@ -177,9 +159,9 @@ export function getUrlParams (url: string) {
  */
 export function pickParams(url: string, name: string) {
   name = name.replace(/[\[]/, '\\\[').replace(/[\]]/, '\\\]');
-  var regexS = `[\\?&]${name}=([^&#]*)`;
-  var regex = new RegExp(regexS);
-  var results = regex.exec(url);
+  const regexS = `[\\?&]${name}=([^&#]*)`;
+  const regex = new RegExp(regexS);
+  const results = regex.exec(url);
   if (results == null || results == undefined) { 
     return ''; 
   }

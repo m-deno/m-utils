@@ -12,7 +12,7 @@
  * @param {any} value 判断的值
  * @returns {boolean} 是否为空
  */
-export function isEmpty(value: any): boolean {
+export function isEmpty(value: unknown): boolean {
   return !value
 }
 
@@ -26,10 +26,10 @@ export function isEmpty(value: any): boolean {
  *  objectEmpty(1) // true
  * ```
  * 
- * @param {number} length 生成数据的长度n
+ * @param {number} obj 目标值
  * @returns {boolean} url是否合法
  */
-export function objectEmpty(obj: any): boolean {
+export function objectEmpty(obj: unknown): boolean {
   if (!obj) {
     return true
   }
@@ -50,6 +50,6 @@ export function objectEmpty(obj: any): boolean {
  * @param {string} key 查找的key
  * @returns {boolean} 对象中是否有该属性
  */
-export function hasProperty(obj: any, key: string): boolean {
-  return obj.hasOwnProperty(key)
+export function hasProperty(obj: Record<string, unknown>, key: string): boolean {
+  return Object.prototype.hasOwnProperty.call(obj, key)
 }
