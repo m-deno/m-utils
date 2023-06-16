@@ -53,3 +53,42 @@ export function objectEmpty(obj: unknown): boolean {
 export function hasProperty(obj: Record<string, unknown>, key: string): boolean {
   return Object.prototype.hasOwnProperty.call(obj, key)
 }
+
+/**
+ * 任意值转boolean(true|false) 
+ * 
+ * @example 
+ * ```ts
+ *  toBoolean(null) // false
+ * 
+ *  toBoolean(undefined) // false
+ * 
+ *  toBoolean('True') // true
+ * 
+ *  toBoolean('tRUE') // true
+ * 
+ *  toBoolean('False') // false
+ * 
+ *  toBoolean('FALSE') // false
+ * ``` 
+ *
+ * @export
+ * @param {unknown} val
+ * @return {*}  {boolean}
+ */
+export function toBoolean(val: unknown): boolean {
+  // boolean
+  if (typeof val === 'boolean') {
+    return val
+  }
+  // 非boolean
+  if (val) {
+    try {
+      const result = JSON.parse((val as string).toLowerCase())
+      return typeof result === 'boolean' ? result : false
+    } catch (err) {
+      return false
+    }
+  }
+  return false
+}
