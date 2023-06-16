@@ -86,7 +86,7 @@ export function toBoolean(val: unknown): boolean {
     try {
       const result = JSON.parse((val as string).toLowerCase())
       return typeof result === 'boolean' ? result : false
-    } catch (err) {
+    } catch {
       return false
     }
   }

@@ -84,3 +84,31 @@ export function splitByOperators(str: string, operatorTor='&', assignTor='=') {
   }
   return Object.keys(ret).length === 0 ? null : ret
 }
+
+
+/**
+ * 字符串根据拆分符号转为数字数组
+ *
+ * @example
+ * 
+ * ```ts
+ *  splitToNumbers('100x100', 'x') // [100, 100]
+ * 
+ *  splitToNumbers('100ax100', 'x') // []
+ * ```
+ * 
+ * @param {string} str 字符串
+ * @param {string} [operator='x'] 拆分字符
+ * @return {*}  {number[]}
+ */
+export function splitToNumbers(str: string, operator='x'):number[] {
+  // 拆分字符串
+  const splitArray = str.split(operator).map(Number)
+  // 判断数组种数据是否合法， 不合法返回][]
+  for (let i = 0; i <= splitArray.length; i++) {
+    if (!Number.isFinite(splitArray[i])) {
+      return []
+    }
+  }
+  return splitArray
+}
