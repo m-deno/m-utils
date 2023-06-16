@@ -3,10 +3,10 @@
  * 
  * @example 
  * ```ts
- *  objectHelper.isEmpty('') // true
- *  objectHelper.isEmpty(null) // true
- *  objectHelper.isEmpty(undefined) // true
- *  objectHelper.isEmpty({}) // false
+ *  isEmpty('') // true
+ *  isEmpty(null) // true
+ *  isEmpty(undefined) // true
+ *  isEmpty({}) // false
  * ```
  * 
  * @param {any} value 判断的值
@@ -21,9 +21,9 @@ export function isEmpty(value: unknown): boolean {
  * 
  * @example
  * ```ts
- *  objectHelper.objectEmpty({}) // true
- *  objectHelper.objectEmpty(null) // true
- *  objectHelper.objectEmpty(1) // true
+ *  objectEmpty({}) // true
+ *  objectEmpty(null) // true
+ *  objectEmpty(1) // true
  * ```
  * 
  * @param {number} obj 目标值
@@ -41,9 +41,9 @@ export function objectEmpty(obj: unknown): boolean {
  * 
  * @example
  * ```ts
- *  objectHelper.hasProperty({a: 1}, 'a') // true
- *  objectHelper.hasProperty({a: 1}, 'b') // false
- *  objectHelper.hasProperty({a: 1}, '') // false
+ *  hasProperty({a: 1}, 'a') // true
+ *  hasProperty({a: 1}, 'b') // false
+ *  hasProperty({a: 1}, '') // false
  * ```
  * 
  * @param {any} obj 目标对象
@@ -59,17 +59,17 @@ export function hasProperty(obj: Record<string, unknown>, key: string): boolean 
  * 
  * @example 
  * ```ts
- *  objectHelper.toBoolean(null) // false
+ *  toBoolean(null) // false
  * 
- *  objectHelper.toBoolean(undefined) // false
+ *  toBoolean(undefined) // false
  * 
- *  objectHelper.toBoolean('True') // true
+ *  toBoolean('True') // true
  * 
- *  objectHelper.toBoolean('tRUE') // true
+ *  toBoolean('tRUE') // true
  * 
- *  objectHelper.toBoolean('False') // false
+ *  toBoolean('False') // false
  * 
- *  objectHelper.toBoolean('FALSE') // false
+ *  toBoolean('FALSE') // false
  * ``` 
  *
  * @export

@@ -6,11 +6,11 @@ import { splitByOperators } from "./string.ts";
  * 
  * @example
  * ```ts
- *  urlHelper.isValidUrl('http://www.baidu.com') // true
+ *  isValidUrl('http://www.baidu.com') // true
  * ```
  * @example
  * ```ts
- * urlHelper.isValidUrl('a=1&b=2') // false
+ * isValidUrl('a=1&b=2') // false
  * ```
  * 
  * @param {number} length 生成数据的长度n
@@ -31,7 +31,7 @@ export function isValidUrl(url: string): boolean {
  * @example
  * 解析url及参数
  * ```ts
- *  const obj: TUrl = urlHelper.parseUrl('http://www.baidu.com/a?a=1&b=1&c=1.0&d=111')
+ *  const obj: TUrl = parseUrl('http://www.baidu.com/a?a=1&b=1&c=1.0&d=111')
  *  // output 
  *  [Object: null prototype] {
  *     origin: "http://www.baidu.com",
@@ -42,7 +42,7 @@ export function isValidUrl(url: string): boolean {
  *     params: [Object: null prototype] { a: "1", b: "1", c: "1.0", d: "111" }
  *   }
  *   
- * const obj1: TUrl = urlHelper.parseUrl('http://www.baidu.com/#/a?a=1&b=1&c=1.0&d=111')
+ * const obj1: TUrl = parseUrl('http://www.baidu.com/#/a?a=1&b=1&c=1.0&d=111')
  * // output  
  * [Object: null prototype] {
  *   origin: "http://www.baidu.com",
@@ -53,7 +53,7 @@ export function isValidUrl(url: string): boolean {
  *   params: [Object: null prototype] { a: "1", b: "1", c: "1.0", d: "111" }
  * }
  * 
- * const obj2: TUrl = urlHelper.parseUrl('a')
+ * const obj2: TUrl = parseUrl('a')
  * if (obj2 && obj2.params) {
  *   console.log(obj2.params['a']);
  * }
@@ -112,10 +112,10 @@ export function parseUrl(url: string): TUrl {
  * 
  * @example 
  * ```ts
- *  urlHelper.getUrlParams('?a=1&b=1&c=1.0&d=111')
+ *  getUrlParams('?a=1&b=1&c=1.0&d=111')
  *  // { a: "1", b: "1", c: "1.0", d: "111" }
  * 
- *  urlHelper.getUrlParams('a=1&b=1&c=1.0&d=111')
+ *  getUrlParams('a=1&b=1&c=1.0&d=111')
  *  // { a: "1", b: "1", c: "1.0", d: "111" }
  * ```
  * 
@@ -143,7 +143,7 @@ export function getUrlParams (url: string) {
  * 
  * @example 
  * ```ts
- *  urlHelper.pickParams('http://www.baidu.com?&a=1&b=1&c=1.0&d=111', 'd')
+ *  pickParams('http://www.baidu.com?&a=1&b=1&c=1.0&d=111', 'd')
  *  // 111
  * ```
  * 

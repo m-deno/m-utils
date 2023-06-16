@@ -4,13 +4,13 @@
  * @example
  * 获取4位数的最小值和最大值
  * ```ts
- *  randomHelper.getMinMaxInt(4)
+ *  getMinMaxInt(4)
  * ```
  * 
  * @param {number} length 生成数据的长度n
  * @returns {[min, max]} n位数对应的最大值和最小值
  */
-export function getMinMaxInt(length:number=4) {
+export function getMinMaxInt(length=4) {
   let max = 9;
   let min = 1;
   for (let i=1; i< length; i++) {
@@ -26,18 +26,18 @@ export function getMinMaxInt(length:number=4) {
  * @example
  * 获取4位随机值
  * ```ts
- * randomHelper.randomCode(4)
+ * randomCode(4)
  * ```
  * 
  * 获取4位随机值
  * ```ts
- * randomHelper.randomCode(5)
+ * randomCode(5)
  * ```
  * 
  * @param {number} length 要生成的随机数的长度
  * @returns {num } 随机数
  */
-export function randomCode(length:number=4): number {
+export function randomCode(length=4): number {
   const [min, max] = getMinMaxInt(length)
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -48,7 +48,7 @@ export function randomCode(length:number=4): number {
  * @example
  * 获取1000-9999中的随机值
  * ```ts
- * randomHelper.getRandomInt(4)
+ * getRandomInt(4)
  * ```
  * 
  * @param {number} min 最小值
