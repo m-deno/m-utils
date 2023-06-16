@@ -5,10 +5,10 @@ import { isEmpty } from "./object.ts";
  * 
  * @example
  * ```ts
- *  getObjectByOperators('b=2&a=1', '&', '=')
+ *  stringHelper.getObjectByOperators('b=2&a=1', '&', '=')
  *  // { b: "2", a: "1" }
  * 
- *  getObjectByOperators('b=2+d&a=1+c=3', '', '&', '+', '=')
+ *  stringHelper.getObjectByOperators('b=2+d&a=1+c=3', '', '&', '+', '=')
  *  // { b: "2", a: "1", c: "3" }
  * ```
  * 
@@ -60,10 +60,10 @@ export function getObjectByOperators(str: string, ...operators: string[]): Recor
  * 
  * @example
  * ```ts
- * splitByOperators('a=1&b=12') 
+ * stringHelper.splitByOperators('a=1&b=12') 
  * // { a: "1", b: "12" }
  * 
- * splitByOperators('a#1&b#12', '&', '#') 
+ * stringHelper.splitByOperators('a#1&b#12', '&', '#') 
  * // { a: "1", b: "12" }
  * ```
  * 
@@ -92,9 +92,9 @@ export function splitByOperators(str: string, operatorTor='&', assignTor='=') {
  * @example
  * 
  * ```ts
- *  splitToNumbers('100x100', 'x') // [100, 100]
+ *  stringHelper.splitToNumbers('100x100', 'x') // [100, 100]
  * 
- *  splitToNumbers('100ax100', 'x') // []
+ *  stringHelper.splitToNumbers('100ax100', 'x') // []
  * ```
  * 
  * @param {string} str 字符串
