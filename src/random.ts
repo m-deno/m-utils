@@ -4,7 +4,7 @@
  * @example
  * 获取4位数的最小值和最大值
  * ```ts
- *  getMinMaxInt(4)
+ *  randomHelper.getMinMaxInt(4)
  * ```
  * 
  * @param {number} length 生成数据的长度n
@@ -26,12 +26,12 @@ export function getMinMaxInt(length:number=4) {
  * @example
  * 获取4位随机值
  * ```ts
- * randomCode(4)
+ * randomHelper.randomCode(4)
  * ```
  * 
  * 获取4位随机值
  * ```ts
- * randomCode(5)
+ * randomHelper.randomCode(5)
  * ```
  * 
  * @param {number} length 要生成的随机数的长度
@@ -48,7 +48,7 @@ export function randomCode(length:number=4): number {
  * @example
  * 获取1000-9999中的随机值
  * ```ts
- * getRandomInt(4)
+ * randomHelper.getRandomInt(4)
  * ```
  * 
  * @param {number} min 最小值

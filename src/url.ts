@@ -1,22 +1,16 @@
+import { TUrl } from "../types.ts";
 import { splitByOperators } from "./string.ts";
-
-export type TUrl = Pick<URL, 'origin'|'protocol'|'host'|'pathname'|'hash'> & {
-  params: {
-    string: unknown
-  }
-} 
 
 /**
  * 判断一个字符串是否为url
  * 
  * @example
- * Example1
  * ```ts
- *  isValidUrl('http://www.baidu.com') // true
+ *  urlHelper.isValidUrl('http://www.baidu.com') // true
  * ```
- * Example2
+ * @example
  * ```ts
- * isValidUrl('a=1&b=2') // false
+ * urlHelper.isValidUrl('a=1&b=2') // false
  * ```
  * 
  * @param {number} length 生成数据的长度n
@@ -37,7 +31,7 @@ export function isValidUrl(url: string): boolean {
  * @example
  * 解析url及参数
  * ```ts
- *  const obj: TUrl = parseUrl('http://www.baidu.com/a?a=1&b=1&c=1.0&d=111')
+ *  const obj: TUrl = urlHelper.parseUrl('http://www.baidu.com/a?a=1&b=1&c=1.0&d=111')
  *  // output 
  *  [Object: null prototype] {
  *     origin: "http://www.baidu.com",
@@ -48,7 +42,7 @@ export function isValidUrl(url: string): boolean {
  *     params: [Object: null prototype] { a: "1", b: "1", c: "1.0", d: "111" }
  *   }
  *   
- * const obj1: TUrl = parseUrl('http://www.baidu.com/#/a?a=1&b=1&c=1.0&d=111')
+ * const obj1: TUrl = urlHelper.parseUrl('http://www.baidu.com/#/a?a=1&b=1&c=1.0&d=111')
  * // output  
  * [Object: null prototype] {
  *   origin: "http://www.baidu.com",
@@ -59,7 +53,7 @@ export function isValidUrl(url: string): boolean {
  *   params: [Object: null prototype] { a: "1", b: "1", c: "1.0", d: "111" }
  * }
  * 
- * const obj2: TUrl = parseUrl('a')
+ * const obj2: TUrl = urlHelper.parseUrl('a')
  * if (obj2 && obj2.params) {
  *   console.log(obj2.params['a']);
  * }
@@ -118,10 +112,10 @@ export function parseUrl(url: string): TUrl {
  * 
  * @example 
  * ```ts
- *  getUrlParams('?a=1&b=1&c=1.0&d=111')
+ *  urlHelper.getUrlParams('?a=1&b=1&c=1.0&d=111')
  *  // { a: "1", b: "1", c: "1.0", d: "111" }
  * 
- *  getUrlParams('a=1&b=1&c=1.0&d=111')
+ *  urlHelper.getUrlParams('a=1&b=1&c=1.0&d=111')
  *  // { a: "1", b: "1", c: "1.0", d: "111" }
  * ```
  * 
@@ -149,7 +143,7 @@ export function getUrlParams (url: string) {
  * 
  * @example 
  * ```ts
- *  pickParams('http://www.baidu.com?&a=1&b=1&c=1.0&d=111', 'd')
+ *  urlHelper.pickParams('http://www.baidu.com?&a=1&b=1&c=1.0&d=111', 'd')
  *  // 111
  * ```
  * 
