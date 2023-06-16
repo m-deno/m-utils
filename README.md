@@ -2,50 +2,50 @@
 
 ## random
 ```js
-import { getMinMaxInt, randomCode, getRandomInt } from "https://deno.land/x/m_utils/mod.ts";
+import { randomHelper } from "https://deno.land/x/m_utils/mod.ts";
 
 // 获取4位数的最小值和最大值
-console.log(getMinMaxInt(4));
+console.log(randomHelper.getMinMaxInt(4));
 // [ 1000, 9999 ]
 
 // 获取1000-9999中的随机值
-console.log(getRandomInt(1000, 9999));
+console.log(randomHelper.getRandomInt(1000, 9999));
 // 9460
 
 // 获取4位随机值
-console.log(randomCode(4));
+console.log(randomHelper.randomCode(4));
 // 8791
 
 // 获取5位随机值
-console.log(randomCode(5));
+console.log(randomHelper.randomCode(5));
 // 35658
 ```
 ## url
 ```ts
-import { parseUrl, TUrl } from "https://deno.land/x/m_utils/mod.ts";
+import { urlHelper, TUrl } from "https://deno.land/x/m_utils/mod.ts";
 
-const obj: TUrl = parseUrl('http://www.baidu.com/a?a=1&b=1&c=1.0&d=111')
+const obj: TUrl = urlHelper.parseUrl('http://www.baidu.com/a?a=1&b=1&c=1.0&d=111')
 // { a: "1", b: "1", c: "1.0", d: "111" }
 ```
 
 ```ts
-import { pickParams } from "https://deno.land/x/m_utils/mod.ts";
+import { urlHelper } from "https://deno.land/x/m_utils/mod.ts";
 
-const obj = pickParams('http://www.baidu.com?&a=1&b=1&c=1.0&d=111', 'd')
+const obj = urlHelper.pickParams('http://www.baidu.com?&a=1&b=1&c=1.0&d=111', 'd')
 
 console.log(obj2);
 // 111
 ```
 
 ```ts
-import { isValidUrl } from "https://deno.land/x/m_utils/mod.ts";
+import { urlHelper } from "https://deno.land/x/m_utils/mod.ts";
 
-console.log(isValidUrl('a=1&b=2') );
+console.log(urlHelper.isValidUrl('a=1&b=2') );
 // false
 ```
 
 ```ts
-const obj: TUrl = getUrlParams('?a=1&b=1&c=1.0&d=111')
+const obj: TUrl = urlHelper.getUrlParams('?a=1&b=1&c=1.0&d=111')
 
 console.log(obj3);
 // { a: "1", b: "1", c: "1.0", d: "111" }
@@ -53,44 +53,44 @@ console.log(obj3);
 
 ## string
 ```ts
-import { splitByOperators } from "https://deno.land/x/m_utils/mod.ts";
+import { stringHelper } from "https://deno.land/x/m_utils/mod.ts";
 
-splitByOperators('a=1&b=12') 
+stringHelper.splitByOperators('a=1&b=12') 
 // { a: "1", b: "12" }
 
-splitByOperators('a#1&b#12', '&', '#') 
+stringHelper.splitByOperators('a#1&b#12', '&', '#') 
 // { a: "1", b: "12" }
 ```
 ```ts
-import { getObjectByOperators } from "https://deno.land/x/m_utils/mod.ts";
+import { stringHelper } from "https://deno.land/x/m_utils/mod.ts";
 
-getObjectByOperators('b=2&a=1', '&', '=')
+stringHelper.getObjectByOperators('b=2&a=1', '&', '=')
 // { b: "2", a: "1" }
 
-getObjectByOperators('b=2+d&a=1+c=3', '', '&', '+', '=')
+stringHelper.getObjectByOperators('b=2+d&a=1+c=3', '', '&', '+', '=')
 // { b: "2", a: "1", c: "3" }
 ```
 
 ## object
 ```ts
-import { isEmpty } from "https://deno.land/x/m_utils/mod.ts";
+import { objectHelper } from "https://deno.land/x/m_utils/mod.ts";
 
-isEmpty('') // true
-isEmpty(null) // true
-isEmpty(undefined) // true
-isEmpty({}) // false
+objectHelper.isEmpty(null) // true
+objectHelper.isEmpty('') // true
+objectHelper.isEmpty(undefined) // true
+objectHelper.isEmpty({}) // false
 ```
 ```ts
-import { objectEmpty } from "https://deno.land/x/m_utils/mod.ts";
+import { objectHelperobjectHelper. } from "https://deno.land/x/m_utils/mod.ts";
 
-objectEmpty({}) // true
-objectEmpty(null) // true
-objectEmpty(1) // true
+objectHelper.objectEmpty({}) // true
+objectHelper.objectEmpty(null) // true
+objectHelper.objectEmpty(1) // true
 ```
 ```ts
-import { hasProperty } from "https://deno.land/x/m_utils/mod.ts";
+import { objectHelper } from "https://deno.land/x/m_utils/mod.ts";
 
-hasProperty({a: 1}, 'a') // true
-hasProperty({a: 1}, 'b') // false
-hasProperty({a: 1}, '') // false
+objectHelper.hasProperty({a: 1}, 'a') // true
+objectHelper.hasProperty({a: 1}, 'b') // false
+objectHelper.hasProperty({a: 1}, '') // false
 ```
